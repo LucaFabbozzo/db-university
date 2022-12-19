@@ -1,0 +1,65 @@
+SELECT COUNT(*) AS `studenti_iscritti`, YEAR(`enrolment_date`) AS `anno`
+FROM `students`
+GROUP BY YEAR(`enrolment_date`);
+
+
+SELECT `students`.`id`, `students`.`name`, `students`.`surname` , `students`.`registration_number`
+FROM `students`
+JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+
+
+SELECT COUNT(*) AS `insegnanti`, `office_address`
+FROM `teachers`
+GROUP BY `office_address`;
+
+
+SELECT `degrees`.`id`, `degrees`.`name`, `degrees`.`level`,
+`degrees`.`address`, `degrees`.`email`, `degrees`.`website`, `departments`.`name`
+FROM `degrees`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `degrees`.`level` = 'magistrale'
+AND `departments`.`name` = 'Dipartimento di Neuroscienze';
+
+
+SELECT AVG(`vote`) as `media_voti`, `exam_id`
+FROM `exam_student`
+GROUP BY `exam_id`;
+
+
+SELECT `courses`.`name`, `teachers`.`id`, `teachers`.`name`, `teachers`.`surname`
+FROM `courses`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+WHERE `teachers`.`id` = 44
+
+
+SELECT COUNT(*) AS `corsi_di_laurea`, `department_id`
+FROM `degrees`
+GROUP BY `department_id`;
+
+
+SELECT `students`.`surname`, `students`.`name`, `students`.`registration_number`, `degrees`.`name`, `departments`.`name`
+FROM `departments`
+JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+JOIN `students` ON `degrees`.id = `students`.`degree_id`
+ORDER BY(`students`.`surname`)
+
+
+SELECT `degrees`.`id`, `degrees`.`name` AS `corso_di_laurea`, `courses`.`id`, `courses`.`degree_id`, `courses`.`name`, `teachers`.`id`,`teachers`.`surname`, `teachers`.`name`
+FROM `degrees`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+
+
+
+SELECT `teachers`.`id`, `teachers`.`surname`, `teachers`.`name`, `departments`.`name`
+FROM `departments`
+JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`
+JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Matematica';
+
+
