@@ -9,8 +9,8 @@ WHERE `cfu` > 10;
 
 
 SELECT * 
-FROM `students`id
-WHERE `date_of_birth` < '1992-12-16';
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE())  > 30;
 
 
 SELECT * 
