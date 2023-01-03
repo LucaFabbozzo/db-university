@@ -8,6 +8,8 @@ FROM `courses`
 WHERE `cfu` > 10;
 
 
+utilizza la funzione TIMESTAMPDIFF per calcolare la differenza in anni tra la data di nascita di uno studente (date_of_birth) e la data corrente (CURDATE()). Il risultato viene confrontato con 30 e solo gli studenti con più di 30 anni vengono incluse nel set di risultati.
+
 SELECT * 
 FROM `students`
 WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE())  > 30;
